@@ -1,0 +1,845 @@
+object FCreator: TFCreator
+  Left = 335
+  Height = 372
+  Top = 175
+  Width = 766
+  Caption = 'Font Creator'
+  ClientHeight = 372
+  ClientWidth = 766
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poOwnerFormCenter
+  LCLVersion = '1.8.4.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 100
+    Top = 272
+    Width = 766
+    Align = alBottom
+    ClientHeight = 100
+    ClientWidth = 766
+    TabOrder = 0
+    object ScrollBox: TScrollBox
+      Left = 1
+      Height = 98
+      Top = 1
+      Width = 679
+      HorzScrollBar.Increment = 7
+      HorzScrollBar.Page = 78
+      HorzScrollBar.Smooth = True
+      HorzScrollBar.Tracking = True
+      VertScrollBar.Increment = 5
+      VertScrollBar.Page = 55
+      VertScrollBar.Smooth = True
+      VertScrollBar.Tracking = True
+      Align = alClient
+      ClientHeight = 96
+      ClientWidth = 677
+      TabOrder = 0
+      object GlyphGen: TBGRAVirtualScreen
+        Left = -2
+        Height = 55
+        Top = 0
+        Width = 80
+        OnRedraw = GlyphGenRedraw
+        Alignment = taLeftJustify
+        Color = clWhite
+        ParentColor = False
+        TabOrder = 0
+      end
+    end
+    object BGuardar: TButton
+      Left = 685
+      Height = 58
+      Top = 21
+      Width = 75
+      Align = alRight
+      BorderSpacing.Left = 5
+      BorderSpacing.Top = 20
+      BorderSpacing.Right = 5
+      BorderSpacing.Bottom = 20
+      Caption = 'Guardar'
+      OnClick = BGuardarClick
+      TabOrder = 1
+    end
+  end
+  object Glyphs: TGroupBox
+    Left = 0
+    Height = 51
+    Top = 221
+    Width = 766
+    Align = alBottom
+    Caption = 'Glyphs'
+    ClientHeight = 34
+    ClientWidth = 762
+    TabOrder = 1
+    object EdGlyphs: TEdit
+      Left = 0
+      Height = 34
+      Top = 0
+      Width = 762
+      Align = alClient
+      TabOrder = 0
+      Text = ' !"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ºáéíóúñÑ¿¡ÁÉÍÓÚüÜ'
+    end
+  end
+  object GBFuente: TGroupBox
+    Left = 477
+    Height = 221
+    Top = 0
+    Width = 264
+    Align = alClient
+    Caption = 'Ejemplo'
+    ClientHeight = 204
+    ClientWidth = 260
+    TabOrder = 2
+    object BGenerar: TButton
+      Left = 0
+      Height = 36
+      Top = 168
+      Width = 260
+      Align = alBottom
+      Caption = 'Generar'
+      OnClick = BGenerarClick
+      TabOrder = 0
+    end
+    object Panel2: TPanel
+      Left = 0
+      Height = 25
+      Top = 0
+      Width = 260
+      Align = alTop
+      ClientHeight = 25
+      ClientWidth = 260
+      TabOrder = 1
+      object EdTexto: TEdit
+        Left = 1
+        Height = 23
+        Top = 1
+        Width = 40
+        Align = alLeft
+        OnChange = PrevisualizarFuente
+        TabOrder = 0
+        Text = 'A'
+      end
+      object CBFondo: TColorButton
+        Left = 216
+        Height = 23
+        Top = 1
+        Width = 43
+        Align = alRight
+        BorderWidth = 2
+        ButtonColorSize = 16
+        ButtonColor = clBlack
+        OnColorChanged = PrevisualizarFuente
+      end
+    end
+    object FontPreview: TImage
+      Left = 0
+      Height = 143
+      Top = 25
+      Width = 260
+      Align = alClient
+      Center = True
+      OnClick = FontPreviewClick
+      Proportional = True
+      Stretch = True
+    end
+  end
+  object RadioGroup1: TRadioGroup
+    Left = 0
+    Height = 221
+    Top = 0
+    Width = 89
+    Align = alLeft
+    AutoFill = True
+    Caption = 'Glyph'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 204
+    ClientWidth = 85
+    TabOrder = 3
+    object Label1: TLabel
+      Left = 6
+      Height = 22
+      Top = 6
+      Width = 73
+      Alignment = taCenter
+      Caption = 'Ancho:'
+      ParentColor = False
+    end
+    object EdAncho: TSpinEdit
+      Left = 6
+      Height = 32
+      Top = 28
+      Width = 73
+      MaxValue = 200
+      OnChange = PrevisualizarFuente
+      TabOrder = 0
+      Value = 12
+    end
+    object Label2: TLabel
+      Left = 6
+      Height = 22
+      Top = 60
+      Width = 73
+      Alignment = taCenter
+      Caption = 'Alto:'
+      ParentColor = False
+    end
+    object EdAlto: TSpinEdit
+      Left = 6
+      Height = 32
+      Top = 82
+      Width = 73
+      MaxValue = 200
+      OnChange = PrevisualizarFuente
+      TabOrder = 1
+      Value = 14
+    end
+    object Label9: TLabel
+      Left = 6
+      Height = 22
+      Top = 114
+      Width = 73
+      Alignment = taCenter
+      Caption = 'Pos:'
+      ParentColor = False
+    end
+    object EdX: TSpinEdit
+      Left = 6
+      Height = 32
+      Top = 136
+      Width = 73
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 2
+      Value = 4
+    end
+    object EdY: TSpinEdit
+      Left = 6
+      Height = 30
+      Top = 168
+      Width = 73
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 3
+    end
+  end
+  object RadioGroup2: TRadioGroup
+    Left = 89
+    Height = 221
+    Top = 0
+    Width = 97
+    Align = alLeft
+    AutoFill = True
+    Caption = 'Contorno'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 204
+    ClientWidth = 93
+    TabOrder = 4
+    object CBContorno: TCheckBox
+      Left = 6
+      Height = 25
+      Top = 6
+      Width = 81
+      Caption = 'Activo'
+      Checked = True
+      OnChange = PrevisualizarFuente
+      State = cbChecked
+      TabOrder = 0
+    end
+    object Label3: TLabel
+      Left = 6
+      Height = 16
+      Top = 31
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Alfa:'
+      ParentColor = False
+    end
+    object EdContornoA: TSpinEdit
+      Left = 6
+      Height = 26
+      Top = 47
+      Width = 81
+      MaxValue = 255
+      OnChange = PrevisualizarFuente
+      TabOrder = 1
+      Value = 255
+    end
+    object CBContornoC: TColorButton
+      Left = 6
+      Height = 20
+      Top = 73
+      Width = 81
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = 9868950
+      OnColorChanged = PrevisualizarFuente
+    end
+    object Label4: TLabel
+      Left = 6
+      Height = 15
+      Top = 93
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Offset:'
+      ParentColor = False
+    end
+    object EdContornoX: TSpinEdit
+      Left = 6
+      Height = 25
+      Top = 108
+      Width = 81
+      Enabled = False
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 2
+    end
+    object EdContornoY: TSpinEdit
+      Left = 6
+      Height = 25
+      Top = 133
+      Width = 81
+      Enabled = False
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 3
+    end
+    object Label8: TLabel
+      Left = 6
+      Height = 15
+      Top = 158
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Grosor:'
+      ParentColor = False
+    end
+    object EdContornoG: TFloatSpinEdit
+      Left = 6
+      Height = 25
+      Top = 173
+      Width = 81
+      Increment = 0.01
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 4
+      Value = 0.2
+    end
+  end
+  object RadioGroup4: TRadioGroup
+    Left = 283
+    Height = 221
+    Top = 0
+    Width = 97
+    Align = alLeft
+    AutoFill = True
+    Caption = 'Relleno'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 204
+    ClientWidth = 93
+    DragCursor = crDefault
+    TabOrder = 5
+    object CBRellenoTipo: TComboBox
+      Left = 6
+      Height = 24
+      Top = 6
+      Width = 81
+      ItemHeight = 0
+      ItemIndex = 0
+      Items.Strings = (
+        'Solid'
+        'Linear'
+        'Diamond'
+        'Reflected'
+        'Radial'
+      )
+      OnChange = PrevisualizarFuente
+      TabOrder = 0
+      Text = 'Solid'
+    end
+    object CBRellenoC1: TColorButton
+      Left = 6
+      Height = 18
+      Top = 30
+      Width = 81
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = clWhite
+      OnColorChanged = PrevisualizarFuente
+    end
+    object EdRellenoP1X: TFloatSpinEdit
+      Left = 6
+      Height = 22
+      Top = 48
+      Width = 81
+      Increment = 0.2
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 1
+    end
+    object EdRellenoP1Y: TFloatSpinEdit
+      Left = 6
+      Height = 22
+      Top = 70
+      Width = 81
+      Increment = 0.2
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 2
+    end
+    object CBRellenoC2: TColorButton
+      Left = 6
+      Height = 18
+      Top = 92
+      Width = 81
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = 721151
+      OnColorChanged = PrevisualizarFuente
+    end
+    object EdRellenoP2X: TFloatSpinEdit
+      Left = 6
+      Height = 22
+      Top = 110
+      Width = 81
+      Increment = 0.2
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 3
+    end
+    object EdRellenoP2Y: TFloatSpinEdit
+      Left = 6
+      Height = 22
+      Top = 132
+      Width = 81
+      Increment = 0.2
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 4
+      Value = 30
+    end
+    object CBRellenoGamma: TCheckBox
+      Left = 6
+      Height = 22
+      Top = 154
+      Width = 81
+      Caption = 'Gama'
+      Checked = True
+      OnChange = PrevisualizarFuente
+      State = cbChecked
+      TabOrder = 5
+    end
+    object CBRellenoSinus: TCheckBox
+      Left = 6
+      Height = 22
+      Top = 176
+      Width = 81
+      Caption = 'Sinus'
+      Checked = True
+      OnChange = PrevisualizarFuente
+      State = cbChecked
+      TabOrder = 6
+    end
+  end
+  object RadioGroup3: TRadioGroup
+    Left = 186
+    Height = 221
+    Top = 0
+    Width = 97
+    Align = alLeft
+    AutoFill = True
+    Caption = 'Sombra'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 204
+    ClientWidth = 93
+    TabOrder = 6
+    object CBSombra: TCheckBox
+      Left = 6
+      Height = 25
+      Top = 6
+      Width = 81
+      Caption = 'Activo'
+      Checked = True
+      OnChange = PrevisualizarFuente
+      State = cbChecked
+      TabOrder = 0
+    end
+    object Label5: TLabel
+      Left = 6
+      Height = 16
+      Top = 31
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Alfa:'
+      ParentColor = False
+    end
+    object EdSombraA: TSpinEdit
+      Left = 6
+      Height = 26
+      Top = 47
+      Width = 81
+      MaxValue = 255
+      OnChange = PrevisualizarFuente
+      TabOrder = 1
+      Value = 255
+    end
+    object CBSombraC: TColorButton
+      Left = 6
+      Height = 20
+      Top = 73
+      Width = 81
+      BorderWidth = 2
+      ButtonColorSize = 16
+      ButtonColor = clYellow
+      OnColorChanged = PrevisualizarFuente
+    end
+    object Label6: TLabel
+      Left = 6
+      Height = 15
+      Top = 93
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Offset:'
+      ParentColor = False
+    end
+    object EdSombraX: TSpinEdit
+      Left = 6
+      Height = 25
+      Top = 108
+      Width = 81
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 2
+    end
+    object EdSombraY: TSpinEdit
+      Left = 6
+      Height = 25
+      Top = 133
+      Width = 81
+      MaxValue = 200
+      MinValue = -200
+      OnChange = PrevisualizarFuente
+      TabOrder = 3
+    end
+    object Label7: TLabel
+      Left = 6
+      Height = 15
+      Top = 158
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Radio:'
+      ParentColor = False
+    end
+    object EdSombraR: TSpinEdit
+      Left = 6
+      Height = 25
+      Top = 173
+      Width = 81
+      MinValue = -100
+      OnChange = PrevisualizarFuente
+      TabOrder = 4
+      Value = 2
+    end
+  end
+  object RadioGroup5: TRadioGroup
+    Left = 380
+    Height = 221
+    Top = 0
+    Width = 97
+    Align = alLeft
+    AutoFill = True
+    Caption = 'Shader'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    ClientHeight = 204
+    ClientWidth = 93
+    DragCursor = crDefault
+    TabOrder = 7
+    object CBShader: TCheckBox
+      Left = 6
+      Height = 50
+      Top = 6
+      Width = 81
+      Caption = 'Activo'
+      OnChange = PrevisualizarFuente
+      TabOrder = 0
+    end
+    object Label10: TLabel
+      Left = 6
+      Height = 41
+      Top = 56
+      Width = 81
+      Alignment = taCenter
+      Caption = 'Pos:'
+      ParentColor = False
+    end
+    object EdShaderX: TSpinEdit
+      Left = 6
+      Height = 51
+      Top = 97
+      Width = 81
+      MaxValue = 20000
+      MinValue = -20000
+      OnChange = PrevisualizarFuente
+      TabOrder = 1
+    end
+    object EdShaderY: TSpinEdit
+      Left = 6
+      Height = 50
+      Top = 148
+      Width = 81
+      MaxValue = 20000
+      MinValue = -20000
+      OnChange = PrevisualizarFuente
+      TabOrder = 2
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 741
+    Height = 221
+    Top = 0
+    Width = 25
+    Align = alRight
+    Caption = 'ToolBar1'
+    Images = ImageList1
+    TabOrder = 8
+    object TBAbrir: TToolButton
+      Left = 1
+      Top = 2
+      Caption = 'Cargar'
+      ImageIndex = 0
+      OnClick = TBAbrirClick
+    end
+    object TBSalvar: TToolButton
+      Left = 1
+      Top = 30
+      Caption = 'TBSalvar'
+      ImageIndex = 1
+      OnClick = TBSalvarClick
+    end
+  end
+  object FontDialog: TFontDialog
+    Font.Height = -15
+    MinFontSize = 0
+    MaxFontSize = 0
+    Left = 584
+    Top = 88
+  end
+  object SavePictureDialog: TSavePictureDialog
+    Title = 'Guardar imagen fuente'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
+    Left = 544
+    Top = 296
+  end
+  object ImageList1: TImageList
+    Height = 24
+    Width = 24
+    Left = 496
+    Top = 184
+    Bitmap = {
+      4C69020000001800000018000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF004A4A4A18505050204D4D4D214B4B4B22505050234E4E4E24535353255757
+      57265C5C5C2760606028646464296767672A7171712B6E6E6E2C7777772D7A7A
+      7A2E7D7D7D2FFFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF007C7C7CC1D5D5D5F4CCCCCCF1CACACAF2CACACAF1C9C9C9F2CACACAF1C9C9
+      C9F2CACACAF2CACACAF2CCCCCCF2CCCCCCF2CCCCCCF3CECECEF3CECECEF3D0D0
+      D0F3999999E1FFFFFF00FFFFFF006565653F6B6B6BB26C6C6CB16D6D6DB16D6D
+      6DB28A8A8AE5F6F6F6FFF3F3F3FFECECECFFEDEDEDFFEDEDEDFFEEEEEEFFEEEE
+      EEFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFEFEFEFFFF4F4F4FFFAFA
+      FAFFA5A5A5CBFFFFFF00FFFFFF00797979AFC9C9C9FFB6B6B6FFB6B6B6FFB6B6
+      B6FFA4A4A4FFEDEDEDFFDDDDDDFFC9C9C9FFC9C9C9FFC9C9C9FFCACACAFFCACA
+      CAFFCACACAFFCACACAFFCBCBCBFFCBCBCBFFCFCFCFFFD2D2D2FFE0E0E0FFF0F0
+      F0FF989898BCFFFFFF00FFFFFF006D6D6D9DC0C0C0FF9E9E9EFF9E9E9EFF9E9E
+      9EFFA6A6A6FFE2E2E2FFD1D1D1FFC1C1C1FFC2C2C2FFC3C3C3FFC3C3C3FFC3C3
+      C3FFC3C3C3FFC4C4C4FFC4C4C4FFC4C4C4FFCECECEFFDADADAFFDDDDDDFFE3E3
+      E3FF8B8B8BADFFFFFF00FFFFFF006767677CBEBEBEFF9E9E9EFF9E9E9EFF9797
+      97FFC3C3C3FFD1D1D1FFC4C4C4FFBCBCBCFFBCBCBCFFBDBDBDFFBDBDBDFFBDBD
+      BDFFBDBDBDFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBFBFBFFFC6C6C6FFD4D4
+      D4FF8080809AFFFFFF00FFFFFF0064646457BBBBBBFF9E9E9EFF9E9E9EFF8080
+      80FFD5D5D5FFC2C2C2FFB5B5B5FFB4B4B4FFB4B4B4FFB4B4B4FFB4B4B4FFB5B5
+      B5FFB5B5B5FFB6B6B6FFB6B6B6FFB6B6B6FFB6B6B6FFB8B8B8FFC6C6C6FFB1B1
+      B1F871717158FFFFFF00FFFFFF005A5A5A36B4B4B4FB9E9E9EFF9E9E9EFF9999
+      99FFC3C3C3FFB3B3B3FFACACACFFADADADFFADADADFFAEAEAEFFAEAEAEFFAEAE
+      AEFFAEAEAEFFAFAFAFFFAFAFAFFFB0B0B0FFB0B0B0FFB6B6B6FFBCBCBCFF7E7E
+      7ED255555503FFFFFF00FFFFFF005E5E5E1EAFAFAFF29C9C9CFF909090FFB5B5
+      B5FFA8A6A5FFA6A29FFFA6A29FFFA6A3A0FFA6A3A0FFA6A3A0FFA6A3A0FFA7A3
+      A1FFA7A3A1FFA8A4A2FFA9A5A2FFADA7A3FFADA7A3FFAEA8A3FFA6A09BFF746A
+      629A9F6A35189F6A3518AA6A2B0C55555506A1A1A1E9999999FF797979FFC6C6
+      C6FFAE896CFFCBA686FFCBA787FFCBA787FFCBA787FFCBA787FFCBA787FFCBA7
+      87FFCBA787FFCBA787FFCBA787FFCBA787FFCBA787FFCBA787FFC9A485FECEA7
+      85F0CEA684EFCDA684EFB47D50D0FFFFFF00949494DE989898FF989898FFBABA
+      BAFFB89171FFDBB695FFD5AC85FFD5AC85FFD5AC85FFD5AC85FFD5AC85FFD5AB
+      84FFD5AB84FFD5AB83FFD5AA83FFD5AA83FFD4AA82FFD4AA81FFD4A981FFD4A9
+      81FFD4A87FFFDBB694FFB3794BB1FFFFFF008A8A8AD18D8D8DFFB1B1B1FFBABA
+      BAFFBF9777FFD8B18CFFD5AB84FFD5AB84FFD5AB84FFD5AB83FFD5AA83FFD4AA
+      82FFD4AA82FFD4AA81FFD4A981FFD4A980FFD4A980FFD4A880FFD4A87FFFD3A7
+      7EFFD0A175FFD6AF8CFFAD6E3F76FFFFFF00818181C3848484FFBDBDBDFFBEBD
+      BBFFC59D7BFFD6AC85FFD5AA83FFD4AA82FFD4AA81FFD4AA81FFD4A981FFD4A9
+      80FFD4A880FFD4A87FFFD4A87FFFD3A87FFFD3A77EFFD3A77EFFD3A67DFFD0A1
+      75FFD0A174FFCBA07AEFA3633224FFFFFF00777777B6818181FFBEBEBEFFBFB4
+      ABFFCCA37EFFD4A981FFD4A980FFD4A980FFD4A880FFD4A87FFFD3A87FFFD3A8
+      7FFFD3A77EFFD3A77EFFD3A77DFFD3A77DFFD3A67DFFD1A379FFCFA073FFCF9F
+      72FFD3A77EFFBC875BD4FFFFFF00FFFFFF006C6C6CA8808080FFC2C2C2FFBC9F
+      88FFD3A982FFD4A87FFFD3A87FFFD3A77EFFD3A77EFFD3A77EFFD3A77DFFD3A6
+      7DFFD2A67CFFD2A67CFFD2A47AFFD1A377FFD0A074FFCF9F72FFCF9F72FFCF9F
+      72FFD4AA82FFB07444A5FFFFFF00FFFFFF00686868907B7B7BFFB7B7B7FFB58C
+      6CFFD5AB83FFD3A77DFFD3A67DFFD2A57AFFD1A479FFD1A377FFD0A276FFD0A1
+      75FFD0A074FFCF9F72FFCF9F72FFCF9F72FFCF9F72FFCF9F72FFCF9F72FFCF9F
+      72FFC8986EF5A96B3A3EFFFFFF00FFFFFF006767676D828282FF6A6A6AFFA87C
+      58FFD2A578FFD0A174FFCF9E71FFCF9E71FFCF9E71FFCF9E71FFCF9E70FFCF9E
+      70FFCF9E70FFCF9E70FFCE9E70FFCE9E70FFCE9D70FFCE9D6FFFCE9D6FFFCF9F
+      72FFB67F51D3FF000001FFFFFF00FFFFFF005C5C5C48848484FE7C6757FFBF8C
+      60FFCD9A6BFFCD9A6BFFCD9A6AFFCD9A6AFFCD9A6AFFCD9A6AFFCD9A6AFFCD9A
+      6AFFCD9A6AFFCD9969FFCD9969FFCD9969FFCD9969FFCD9969FFCD9969FFCC99
+      69FFAE7140A0FFFFFF00FFFFFF00FFFFFF004141413B676767F59A6A44FFCC96
+      64FFCC9664FFCC9664FFCC9664FFCC9664FFCC9663FFCC9563FFCC9563FFCB95
+      63FFCB9563FFCB9563FFCB9563FFCB9562FFCB9562FFCB9562FFCB9562FFBA83
+      50F47E4C2A43FFFFFF00FFFFFF00FFFFFF001C1C1C24725B47E9A56D3FFDA672
+      46FDA67246FDA67246FDA67246FDA67246FDA67246FDA67246FDA67246FDA672
+      46FDA67246FDA67246FDA67246FDA67246FDA67246FDA87246FBAC7444EA9E65
+      39C20000001CFFFFFF00FFFFFF00FFFFFF00000000060000001E0000002B0000
+      002F000000310000003100000031000000310000003100000031000000310000
+      00310000003100000031000000310000003100000031000000300000002C0000
+      001F00000008FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000
+      0002000000030000000300000003000000030000000300000003000000030000
+      0003000000030000000300000003000000030000000300000003FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
+      FF00FFFFFF00FFFFFF00FFFFFF00CF4B33D6DD7E6BE4DE7F6CE3E19180E7E7A2
+      94EAE7A294EAE6A294EAE6A294EAE7A295E9E7A295E9E7A295E9E6A295E9E7A3
+      95E8E7A395E8E7A395E8E7A395E8E6A395E8E6A395E8E7A396E7DF8978E0DE81
+      6EDEDE816EDEDE816EDDD14F37CBDB705AD9F6D6CEFFF6D3CBFFFBD3D2FFF1ED
+      EDFFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8
+      E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFEEE8E8FFF7F1F1FFFAC0BCFFF6D6
+      CEFFF6D6CEFFF6D6CEFFDB6F5CDCD65039D2FF9E99FFFF9994FFFDB5B6FFDFDF
+      DFFFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6
+      D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFD6D6D6FFEEE4E4FFFF8284FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFCB9BAFFDCDC
+      DCFFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2
+      D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFD2D2D2FFECE5E4FFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFCB9B9FFD9D9
+      D9FFCECECEFFCECECEFFCECECEFFCECECEFFCECECEFFCECECEFFCECECEFFCECE
+      CEFFCECECEFFCECECEFFCECECEFFCECECEFFCECECEFFEAE3E3FFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFCB9B9FFD6D6
+      D6FFCACACAFFCACACAFFCACACAFFCACACAFFCACACAFFCACACAFFCACACAFFCACA
+      CAFFCACACAFFCACACAFFCACACAFFCACACAFFCACACAFFE9E1E1FFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFCB8B9FFD3D3
+      D3FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6
+      C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFC6C6C6FFE7E0DFFFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFBB8B9FFCFCF
+      CFFFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2
+      C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFC2C2C2FFE5DEDEFFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFBB8B8FFCCCC
+      CCFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBE
+      BEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFBEBEBEFFE4DCDCFFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFBB8B8FFC9C9
+      C9FFBABABAFFBABABAFFBABABAFFBABABAFFBABABAFFBABABAFFBABABAFFBABA
+      BAFFBABABAFFBABABAFFBABABAFFBABABAFFBABABAFFE2DBDAFFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9994FFFCB6B7FFEEE6
+      E6FFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DF
+      DFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFE9DFDFFFF6EFEEFFFF8384FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9A95FFFF6567FFFF74
+      75FFFF7475FFFF7475FFFF7475FFFF7475FFFF7475FFFF7475FFFF7475FFFF74
+      75FFFF7475FFFF7475FFFF7475FFFF7475FFFF7475FFFF7475FFFF6E6EFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FFD28480FFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F
+      6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFAF6F6CFFB1716DFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFF685251FF826A69FF826A69FF826A69FF826A69FF826A69FF826A
+      69FF826A69FF826A69FF826A69FF826A69FF826A69FF826A69FF2B2322FFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA79999FFDBD8D8FFDCDADAFFDCDADAFFDCDADAFFDCDADAFFDCDA
+      DAFFDCDADAFFDCDADAFFDCDADAFFDCDADAFFDCDADAFFD7CCCBFF382C2CFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA39392FFD3D1D0FFE99786FFF86D51FFF86D51FFED8D7AFFD3D3
+      D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD3D3D3FFD1C1C0FF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA39392FFCECCCCFFEB8975FFFF5B39FFFF5B39FFF07F67FFCECE
+      CEFFCECECEFFCECECEFFCECECEFFCECECEFFCECECEFFD0C1C0FF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA39392FFCAC7C7FFE98773FFFF5B39FFFF5B39FFEE7D65FFC8C8
+      C8FFC8C8C8FFC8C8C8FFC8C8C8FFC8C8C8FFC8C8C8FFCFC0BFFF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5D65039D2FF9E99FFFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA39392FFC5C2C2FFE58976FFFA6546FFFA6546FFE9806BFFC3C3
+      C3FFC3C3C3FFC3C3C3FFC3C3C3FFC3C3C3FFC3C3C3FFCFBFBEFF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5CF442AB1F2877BFAFF9E99FFFF9E99FFFF9E
+      99FF7B514FFFA39392FFC0BDBDFFC7BAB8FFC8BFBEFFC8BFBEFFC8BBB9FFBDBD
+      BDFFBDBDBDFFBDBDBDFFBDBDBDFFBDBDBDFFBDBDBDFFCEBFBEFF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5BF400004CE4129BBF3877BFAFF9E99FFFF9E
+      99FF7B514FFFA39392FFBBB8B8FFB8B8B8FFB8B8B8FFB8B8B8FFB8B8B8FFB8B8
+      B8FFB8B8B8FFB8B8B8FFB8B8B8FFB8B8B8FFB8B8B8FFCDBEBDFF382C2BFFFF9E
+      99FFFF9E99FFFF9E99FFD6513BD5FFFFFF00CC330005CE4228BDD6513CE2D651
+      3CE26E3227F132211DFB36221FFA36221FFA36221FFA36221FFA36221FFA3622
+      1FFA36221FFA36221FFA36221FFA36221FFA36221FFA362320FA2D1D1BFBD651
+      3CE2D6513CE2D6513CE2CC3D23DD
+    }
+  end
+  object OpenDialog1: TOpenDialog
+    Title = 'Abrir valores'
+    Filter = 'Valores de Font Creator (*.fcv)|*.fcv|Todos los archivos (*.*)|*.*|Archivos de texto (*.txt)|*.txt'
+    Left = 496
+    Top = 128
+  end
+  object SaveDialog1: TSaveDialog
+    Title = 'Guardar archivo valores'
+    Filter = 'Valores de Font Creator (*.fcv)|*.fcv|Cualquier tipo (*.*)|*.*|Archivo de Texto (*.txt)|*.txt'
+    Options = [ofOverwritePrompt, ofEnableSizing, ofViewDetail]
+    Left = 497
+    Top = 80
+  end
+end
